@@ -1,0 +1,35 @@
+body {
+    background-image: url(./FondosHD.MX_fondos-de-pantalla-de-rick-i-morty_1280x1024.jpg);
+    background-size: cover;
+}
+
+header{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#CartaDisplay {
+    border: 1px solid;
+    backdrop-filter: blur(10px);
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content:space-around;
+  
+
+    width: fit-content;
+    height: 100%;
+    color: hsl(146, 50%, 36%);  
+
+    font-size: larger;
+    font-family: sans-serif;
+    
+}
