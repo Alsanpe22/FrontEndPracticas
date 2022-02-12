@@ -23,13 +23,13 @@ main{
     flex-direction: row;
     flex-wrap:wrap;
     justify-content:space-around;
-  
+    
 
     width: fit-content;
     height: 100%;
     color: hsl(146, 50%, 36%);  
 
-    font-size: larger;
+    font-size:initial;
     font-family: sans-serif;
     
 }
