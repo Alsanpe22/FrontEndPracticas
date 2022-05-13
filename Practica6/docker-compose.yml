@@ -1,0 +1,43 @@
+version: "3.2"
+
+services:
+  api:
+    image: node:16
+    volumes:
+      - type: bind
+        source: ./api
+        target: /usr/src
+        # directorio api lo estoy montando en el directorio de la maquina virtual /usr/src
+    ports:
+      - 6005:4000 # puerto 6005 de mi maquina y 4000 de la maquina virtual
+    command: bash -c "cd /usr/src && npm run dev"
+    #depends on:
+    #  - mongo # hasta que mongo se haya lanzado no se lanza la api
+    environment:
+      - MONGO_URL=mongodb://mongo:27017/test # la url indica el sevicio mongo, el puerto 27017 y la base de datos test
+
+  front:
+    image: node:16
+    environment:
+      REACT_APP_API_URL: http://localhost:6005
+      PORT: 3000
+    volumes:
+      - type: bind
+        source: ./front
+        target: /usr/src
+    #depends on:
+    #  - api
+    ports:
+      - 3000:3000
+    command: bash -c "cd /usr/src && npm run start"
+
+
+  mongo:
+    image: mongo:5
+    environment:
+      - MONGO_DATA_DIR=/data/db # variable de entorno
+    volumes:
+      - ./data:/data/db # /data (que lo crea en mi maquina) corresponde a /data/db en la virtual
+    command: mongod --logpath=/dev/null
+    ports:
+      - 27017:27017 # puerto en el que escucha mongo por defecto
